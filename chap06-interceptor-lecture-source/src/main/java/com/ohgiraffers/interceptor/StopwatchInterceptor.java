@@ -3,6 +3,7 @@ package com.ohgiraffers.interceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,11 +23,20 @@ import java.util.Locale;
 
 @Component
 public class StopwatchInterceptor implements HandlerInterceptor {
+    InterceptorTestService testService;
+
+    @Autowired
+    public StopwatchInterceptor(InterceptorTestService testService) {
+        this.testService = testService;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         System.out.println("preHandle 호출함...(핸들러 메소드 이전)");
+
+        /* 설명. Service bean에 있는 메소드 호출 */
+        testService.test();
 
         /* 설명. requestHeader에서 지역 추출 */
         Locale locale = request.getLocale();
