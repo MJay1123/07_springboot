@@ -121,7 +121,6 @@ public class FileUploadController {
             rttr.addFlashAttribute("message", "파일 업로드 실패");
         }
 
-
         return "redirect:/result";
     }
 

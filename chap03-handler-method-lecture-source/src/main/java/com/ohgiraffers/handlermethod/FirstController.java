@@ -33,6 +33,7 @@ public class FirstController {
         int categoryCode = Integer.parseInt(request.getParameter("categoryCode"));
 
         /* 설명. 비즈니스 로직 이후 DB에 insert를 성공하고 돌아왔다는 가정 */
+
         String message = name + "을(를) 신규 메뉴 목록의 " + categoryCode + "번 카테고리에 "
                         + price + "원으로 등록하였습니다!!";
         model.addAttribute("message", message);
@@ -113,26 +114,26 @@ public class FirstController {
         return "first/loginResult";
     }
 
+    @GetMapping("logout1")
+    public String logoutTest1(HttpSession session) {
+        session.invalidate();
+
+        return "first/loginResult";
+    }
+
     /* 설명. Model에 담은 값 중에 일부를 HttpSession에 자동으로 담도록 어노테이션 활용 */
     @PostMapping("login2")
-    public String sessionTest2(Model model, String id){
+    public String sessionTest2(Model model, String id) {
         model.addAttribute("id", id);
 
         return "first/loginResult";
     }
 
-    @GetMapping("logout1")
-    public String logoutTest1(HttpSession session){
-        session.invalidate();
-
-        return "first/login";
-    }
-
     @GetMapping("logout2")
-    public String logoutTest2(SessionStatus sessionStatus){
+    public String logoutTest2(SessionStatus sessionStatus) {
         sessionStatus.setComplete();
 
-        return "first/login";
+        return "first/loginResult";
     }
 
     @GetMapping("body")
@@ -141,10 +142,9 @@ public class FirstController {
     @PostMapping("body")
     public void body(@RequestBody String body,
                      @RequestHeader("content-type") String contentType,
-                     @CookieValue(value="JSESSIONID") String sessionId){
+                     @CookieValue(value="JSESSIONID") String sessionId) {
         System.out.println("body = " + body);
         System.out.println("contentType = " + contentType);
         System.out.println("sessionId = " + sessionId);
     }
-
 }

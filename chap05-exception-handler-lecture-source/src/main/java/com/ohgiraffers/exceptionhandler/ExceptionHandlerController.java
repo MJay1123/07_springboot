@@ -36,12 +36,12 @@ public class ExceptionHandlerController {
         return "/";
     }
 
-//    @ExceptionHandler(NullPointerException.class)
-//    public String nullPointerExceptionHandler() {
-//        System.out.println("이 Controller에서 NullPointer 예외 발생 시 여기 오는지 확인");
-//
-//        return "error/default";
-//    }
+    @ExceptionHandler(NullPointerException.class)
+    public String nullPointerExceptionHandler() {
+        System.out.println("이 Controller에서 NullPointer 예외 발생 시 여기 오는지 확인");
+
+        return "error/default";
+    }
 
     @GetMapping("annotation-user")
     public String userExceptionHandlerTest() throws MemberRegistException {

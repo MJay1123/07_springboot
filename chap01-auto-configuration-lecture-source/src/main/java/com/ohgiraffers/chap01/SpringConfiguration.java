@@ -9,18 +9,18 @@ public class SpringConfiguration {
     @Value("${test.value}")
     public String testValue;
 
+    @Value("${test.age}")
+    public String testAge;
+
     /* 설명. @Value는 시스템 환경변수도 불러올 수 있다. */
     @Value("${username}")
     public String userName;
 
-    @Value("${test.age}")
-    public int age;
-
     @Bean
-    public Object propertReadTest(){
-        System.out.println("testValue : " + testValue);
-        System.out.println("userName : " + userName);
-        System.out.println("testAge : " + age);
+    public Object propertReadTest() {
+        System.out.println("testValue: " + testValue);
+        System.out.println("testAge: " + testAge);
+        System.out.println("userName: " + userName);
 
         return new Object();
     }
